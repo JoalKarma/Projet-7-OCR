@@ -5,13 +5,15 @@ const bodyparser = require('body-parser');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
+
 const cors = require('cors');
 const path = require('path');
 
 const postRoute = require('./routes/post');
 const userRoute = require('./routes/User');
 
-mongoose.connect("mongodb+srv://Jordan:Mpassdejo12@cluster0.xrimu.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect(process.env.MONGOOSE_KEY_CONNECTION,
   {   
     useNewUrlParser: true,
     useUnifiedTopology: true
