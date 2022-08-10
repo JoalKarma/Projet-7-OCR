@@ -4,9 +4,9 @@ Groupomania <br/>
 
 Projet 7 de la formation Openclassrooms (Dévellopeur Web)<br/>
 <br/>
-Pour démarrer le projet cloner le repository ou télécharger le dossier de clui ci.<br/>
+Pour démarrer le projet cloner le repository ou télécharger le dossier de celui ci.<br/>
 <br/>
-Dans votre terminal tapez a la racine des dossier frontend/ et backend/.<br/>
+Dans votre terminal tapez à la racine des dossiers frontend/ et backend/.<br/>
 <br/>
 npm install<br/>
 <br/>
