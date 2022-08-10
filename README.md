@@ -1,5 +1,7 @@
 Groupomania <br/>
 <br/>
+![Capture site Groupomania](https://user-images.githubusercontent.com/94826490/183897832-36f8210d-6ef1-497a-8199-1db20bf3f3b8.jpg)
+
 Projet 7 de la formation Openclassrooms (Dévellopeur Web)<br/>
 <br/>
 Pour démarrer le projet cloner le repository ou télécharger le dossier de clui ci.<br/>
