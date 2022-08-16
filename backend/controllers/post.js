@@ -1,5 +1,6 @@
 const Post = require('../models/Post');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 
 exports.createPost = (req, res, next) => {
       const postObject = (req.body);
@@ -34,14 +35,25 @@ exports.getAllPost = (req, res, next) => {
 };
 
 exports.getOnePost = (req, res, next) => {
-      console.log(req.params.id);
+      const token = req.headers.authorization.split(' ')[1];
+      const decodedToken = jwt.verify(token, `${process.env.JWT_KEY_TOKEN}`);
+      const userId = decodedToken.userId;
+      const isAdmin = decodedToken.isAdmin;
+
+      console.log('req.body', req.body);
+      console.log('token decoder',decodedToken.isAdmin);
       Post.findOne({_id: req.params.id})
-    .then(post => res.status(200).json(post))
+    .then(post => {
+      if(post.userId === userId || isAdmin){
+            res.status(200).json(post);
+      }else{
+            res.status(403).json({message: "Le post que vous essayer de mofidier n'est pas le votre"});
+      }})
     .catch(error => res.status(404).json({
         message: 'requête pas possible'
     })
     );
-}
+};
 
 exports.modifyPost = (req, res, next) => {
       const postObject = req.file ?

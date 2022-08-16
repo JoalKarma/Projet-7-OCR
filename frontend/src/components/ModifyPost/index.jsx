@@ -137,12 +137,22 @@ function ModifyPostForm(e){
                   "Content-Types" : "application/json",
                   "Authorization" : `Bearer ${token}`
             }
-            }).then((res) => res.json())
+            })
             .then((res) => {
-                  setNewPost(res.post);
-                  setNewTitle(res.title);
-                  setNewImageLoad(res.imageUrl);
-
+                  if(res.ok){
+                        console.log('ok ca passe');
+                        return (res = res.json());
+                  }else{
+                        window.location='/403-forbidden';
+                  }
+            })
+            // .then((response) => response.json())
+            .then((data) => {
+                        console.log('test', data.post);
+                        console.log('data', data);
+                        setNewPost(data.post);
+                        setNewTitle(data.title);
+                        setNewImageLoad(data.imageUrl);
             })
             .catch(error => console.log(error));
             setAncienPostFetch(true);     
@@ -255,3 +265,17 @@ function ModifyPostForm(e){
 }
 
 export default ModifyPostForm
+
+// .then((response) => {
+//       if(response.ok){
+//             const data = response.json();
+//             console.log('test', data.post);
+//             console.log('data', data);
+//             console.log(response);
+//             setNewPost(response.post);
+//             setNewTitle(response.title);
+//             setNewImageLoad(response.imageUrl);
+//       }else{
+//             window.location ='403-forbidden';
+//       }
+// })

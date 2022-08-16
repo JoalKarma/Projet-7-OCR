@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Connect from './pages/Connect';
 import CreatePost from './pages/CreatePost';
 import ModifyPostForm from './components/ModifyPost';
+import Page403 from './pages/Page403';
 
 import StylePageConnect from './utils/style/PageConnectStyle';
 import StyledPageHome from './utils/style/PageHomeStyle';
@@ -38,10 +39,18 @@ root.render(
       } 
       />
       <Route path='/:postId' element={
-      <div>
-      <StyledPageCreate />
-      <ModifyPostForm />
-      </div>} />
+        <div>
+          <StyledPageCreate />
+          <ModifyPostForm />
+        </div>} 
+      />
+      <Route path='/403-forbidden' element={
+        <div>
+          <StylePageConnect />
+          <Page403 />
+        </div>  
+      } 
+      />
     </Routes>
   </BrowserRouter>
 );

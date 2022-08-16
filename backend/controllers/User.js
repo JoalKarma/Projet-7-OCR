@@ -15,7 +15,7 @@ exports.signup = (req, res, next) => {
                   isAdmin: user.isAdmin,
                   userId: user.id,
                   token: jwt.sign(
-                        {userId: user.id},
+                        {userId: user.id, isAdmin: user.isAdmin},
                         `${process.env.JWT_KEY_TOKEN}`,
                         {expiresIn: '24h'}
                   )     
@@ -28,6 +28,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
       User.findOne({email: req.body.email})
       .then(user => {
+
             if(!user){
                   return res.status(401).json({error: 'Utilisateur introuvable'});
             }
@@ -37,9 +38,10 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({error: 'Mot de passe incorect'});
                   }
                   token = jwt.sign(
-                        {userId: user.id},
+                        {userId: user.id, isAdmin: user.isAdmin},
                         `${process.env.JWT_KEY_TOKEN}`,
                         {expiresIn: '24h'}
+                        
                   );
                   res.status(200).json({
                         isAdmin: user.isAdmin,
